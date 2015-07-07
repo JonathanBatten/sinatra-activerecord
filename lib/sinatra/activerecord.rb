@@ -40,10 +40,8 @@ module Sinatra
         ActiveRecord::Base.configurations = spec.stringify_keys
         ActiveRecord::Base.establish_connection(environment.to_sym)
       else
-        ActiveRecord::Base.establish_connection(spec)
-        ActiveRecord::Base.configurations = {
-          environment.to_s => ActiveRecord::Base.connection.pool.spec.config
-        }
+        ActiveRecord::Base.configurations = {}
+        ActiveRecord::Base.establish_connection
       end
     end
 
